@@ -1,0 +1,21 @@
+{
+  "name": "lawyer_portfolio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scss": "npx sass assets/scss/app.scss assets/styles/app.css -w",
+    "postcss": "npx postcss assets/styles/app.css -o assets/styles/app.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.4.14",
+    "postcss-cli": "^11.0.0",
+    "postcss-scss": "^4.0.6",
+    "sass": "^1.68.0",
+    "scss": "^0.2.4"
+  }
+}

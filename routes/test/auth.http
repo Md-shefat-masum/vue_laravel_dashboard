@@ -1,0 +1,31 @@
+@host = http://127.0.0.1:9002/api
+@token = Bearer
+
+####
+POST {{ host }}/auth/login HTTP/1.1
+content-type: application/json
+
+{
+    "email": "admin@gmail.com",
+    "password": "12345678"
+}
+
+####
+POST {{ host }}/auth/me HTTP/1.1
+content-type: application/json
+Authorization: {{token}}
+
+####
+POST {{ host }}/auth/register HTTP/1.1
+content-type: application/json
+
+{
+    "name": "admin",
+    "email": "admin@gmail.com",
+    "password": "12345678"
+}
+
+####
+GET {{ host }}/v1/users HTTP/1.1
+Authorization: {{token}}
+

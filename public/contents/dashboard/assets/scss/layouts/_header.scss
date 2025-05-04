@@ -1,0 +1,20 @@
+.header {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    border-bottom: 1px solid var(--white_border);
+
+    .logo {
+        height: 100%;
+
+        img {
+            height: 25px;
+            margin: 3px 0px;
+            width: 55px;
+            text-align: center;
+            object-fit: contain;
+            object-position: center;
+        }
+    }
+}

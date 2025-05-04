@@ -1,0 +1,6 @@
+@host = http://127.0.0.1:9002/api
+@token = Bearer
+####
+GET {{ host }}/v1/users HTTP/1.1
+Authorization: {{token}}
+

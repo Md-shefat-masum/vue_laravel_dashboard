@@ -1,0 +1,65 @@
+#dashboard_app {
+    display: grid;
+
+    .header {
+        background-color: var(--white);
+        height: 30px;
+        box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    .main {
+        display: flex;
+
+        .left_nav {
+            background-color: var(--brand_deep);
+            height: calc(100vh - 30px);
+            width: 55px;
+        }
+
+        .app_content_body {
+            background-color: var(--off_white);
+            width: calc(100vw - 55px);
+            height: calc(100vh - 30px);
+            padding: 8px;
+            padding-bottom: 0px;
+            display: flex;
+            gap: 8px;
+
+            .content_nav {
+                // background-color: var(--white);
+                border-radius: 3px;
+                height: calc(100vh - 45px);
+                border: 1px solid var(--white_border);
+                width: 170px;
+                padding: 15px;
+            }
+
+            .app_content {
+                flex: 1;
+                background-color: var(--white);
+                border-radius: 3px;
+                height: calc(100vh - 45px);
+                margin-bottom: 7px;
+                padding: 10px;
+                border: 1px solid var(--white_border);
+                width: calc(100% - 190px);
+
+                &.transparent{
+                    background-color: unset;
+                }
+            }
+
+            .footer {
+                background-color: var(--ui_dark_light);
+                height: 25px;
+            }
+
+            &:has(.footer) {
+                .app_content {
+                    height: calc(100vh - 70px);
+                }
+            }
+        }
+    }
+
+}

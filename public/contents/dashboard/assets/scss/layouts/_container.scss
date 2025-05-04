@@ -1,0 +1,33 @@
+.container {
+    width: 1400px;
+    // border: var(--border);
+    margin: auto;
+    // padding: 0px 15px;
+    // border: 1px solid red;
+
+    @include xs() {
+        width: calc(100% - 30px);
+    }
+
+    @include sm() {
+        width: calc(576px - 30px);
+    }
+
+    @include md() {
+        width: calc(768px - 30px);
+
+    }
+
+    @include lg() {
+        width: calc(992px - 30px);
+    }
+
+    @include xl() {
+        width: calc(1200px - 30px);
+
+    }
+
+    @include xxl() {
+        width: calc(1400px - 30px);
+    }
+}
