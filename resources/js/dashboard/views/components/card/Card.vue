@@ -1,6 +1,6 @@
-<template lang="">
-    <div>
-        from inner 2
+<template>
+    <div class="card">
+        <slot></slot>
     </div>
 </template>
 <script>

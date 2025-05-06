@@ -489,4 +489,139 @@ footer {
   border-bottom-color: #c12e03;
 }
 
+.table_actions {
+  position: relative;
+  display: inline-block;
+}
+.table_actions > a {
+  height: 30px;
+  width: 30px;
+  border: 1px solid #c6c6c6;
+  border-radius: 2px;
+  text-align: center;
+  line-height: 28px;
+  font-size: 12px;
+}
+.table_actions:hover > a {
+  background: var(--brand);
+  color: var(--white);
+}
+.table_actions:hover ul {
+  top: 0;
+  right: calc(100% + 10px);
+  height: calc(20px + 28 * var(--action_elements));
+  width: 160px;
+  padding: 10px 20px;
+  z-index: 1;
+}
+.table_actions:hover ul li {
+  opacity: 1;
+}
+.table_actions:hover ul li:nth-child(1) {
+  margin-left: 0px;
+}
+.table_actions:hover ul li:nth-child(2) {
+  margin-left: 0px;
+}
+.table_actions:hover ul li:nth-child(3) {
+  margin-left: 0px;
+}
+.table_actions:hover ul li:nth-child(4) {
+  margin-left: 0px;
+}
+.table_actions:hover ul li:nth-child(5) {
+  margin-left: 0px;
+}
+.table_actions:hover ul li:nth-child(6) {
+  margin-left: 0px;
+}
+.table_actions ul {
+  padding: 0;
+  list-style-type: none;
+  right: 50%;
+  overflow: hidden;
+  transition-duration: 0.3s;
+  position: absolute;
+  z-index: 99;
+  background-color: var(--brand_deep);
+  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.24);
+  border-radius: 3px;
+  text-align: left;
+  top: 15px;
+  height: 4px;
+  width: 4px;
+  z-index: -1;
+}
+.table_actions ul li {
+  margin: 0px 0px;
+  transition-duration: 0.2s;
+  opacity: 0;
+}
+.table_actions ul li:nth-child(1) {
+  margin-left: 10px;
+  transition-delay: 0.25s;
+}
+.table_actions ul li:nth-child(2) {
+  margin-left: 20px;
+  transition-delay: 0.35s;
+}
+.table_actions ul li:nth-child(3) {
+  margin-left: 30px;
+  transition-delay: 0.45s;
+}
+.table_actions ul li:nth-child(4) {
+  margin-left: 40px;
+  transition-delay: 0.55s;
+}
+.table_actions ul li:nth-child(5) {
+  margin-left: 50px;
+  transition-delay: 0.65s;
+}
+.table_actions ul li:nth-child(6) {
+  margin-left: 60px;
+  transition-delay: 0.75s;
+}
+.table_actions ul li span {
+  display: block;
+}
+.table_actions ul li a {
+  color: white;
+  transition-duration: 0.3s;
+  text-transform: capitalize;
+  display: block;
+  padding: 5px 10px;
+  position: relative;
+  transition-duration: 0.3s;
+  left: 0;
+}
+.table_actions ul li a:hover {
+  padding-left: 15px;
+  background: var(--brand);
+  color: var(--color-white);
+}
+.table_actions ul li a:active {
+  background-color: #7367F0;
+  color: #FFF;
+}
+.table_actions ul li a i {
+  width: 20px;
+}
+
+table tr:nth-child(n+6) .table_actions ul {
+  top: unset;
+  bottom: 0;
+}
+table tr:nth-child(n+6) .table_actions ul:hover {
+  top: unset;
+  bottom: 0;
+}
+
+.form_error {
+  font-size: 12px;
+  display: block;
+  padding: 2px;
+  color: #ff4d4f;
+  font-weight: 500;
+}
+
 /*# sourceMappingURL=app.css.map */

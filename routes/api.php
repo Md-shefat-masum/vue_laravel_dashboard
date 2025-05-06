@@ -28,12 +28,17 @@ Route::group([
 
     Route::group(['prefix' => 'users'], function () {
         Route::get('/', 'Management\UserController@index');
-        Route::post('/store', 'Management\BranchAssetCategoryController@store');
-        Route::post('/update', 'Management\BranchAssetCategoryController@update');
-        Route::post('/soft-delete', 'Management\BranchAssetCategoryController@soft_delete');
-        Route::post('/restore', 'Management\BranchAssetCategoryController@restore');
-        Route::post('/destroy', 'Management\BranchAssetCategoryController@destroy');
-        Route::post('/import', 'Management\BranchAssetCategoryController@import');
-        Route::get('/{id}', 'Management\BranchAssetCategoryController@show');
+        Route::post('/store', 'Management\UserController@store');
+        Route::post('/update', 'Management\UserController@update');
+        Route::post('/soft-delete', 'Management\UserController@soft_delete');
+        Route::post('/restore', 'Management\UserController@restore');
+        Route::post('/destroy', 'Management\UserController@destroy');
+        Route::post('/import', 'Management\UserController@import');
+        Route::get('/{id}', 'Management\UserController@show');
+    });
+
+    Route::group(['prefix' => 'media'], function () {
+        Route::post('/upload', 'Management\MediaController@upload');
+        Route::delete('/delete', 'Management\MediaController@delete');
     });
 });

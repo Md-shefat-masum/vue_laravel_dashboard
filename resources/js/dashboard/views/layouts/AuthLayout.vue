@@ -13,7 +13,6 @@ export default {
     }),
     watch: {
         "auth_user" : function(){
-            this.checked_auth = true;
             if(this.auth_user){
                 this.$router.push({ name: 'Dashboard' });
             }
@@ -21,6 +20,9 @@ export default {
     },
     created: async function() {
         await this.auth_store.check_auth();
+        setTimeout(() => {
+            this.checked_auth = true;
+        }, 500);
     },
     computed: {
         ...mapState(auth_store, [

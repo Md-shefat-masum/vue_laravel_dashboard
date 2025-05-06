@@ -1,16 +1,18 @@
 <template lang="">
     <div>
-        <span class="">Product Inventory Types</span>
+        <span class="">
+            {{ config.all_page_title }}
+        </span>
         <div class="my-2">
             <div class="flex flex-wrap gap-2">
-                <button type="button" class="inline-flex cursor-pointer items-center justify-center rounded-e-xs px-4 py-1 text-sm font-[400] bg-transparent text-gray-700 border border-gray-700 hover:bg-blue-50 transition">
-                    <span class="ant-btn-icon">
+                <router-link :to="{name: `Create${config.route_prefix}`}" type="button" class="flex! cursor-pointer items-center justify-center rounded-e-xs px-4 py-1 text-sm font-[400] bg-transparent text-gray-700 border border-gray-700 hover:bg-blue-50 transition">
+                    <span class="d-block">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--lets-icons" font-size="20" width="1em" height="1em" viewBox="0 0 24 24">
                             <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M12 6v12m6-6H6"></path>
                         </svg>
                     </span>
-                    <span>Add New</span>
-                </button>
+                    <span class="d-block">Add New</span>
+                </router-link>
                 <button type="button" class="inline-flex cursor-pointer items-center justify-center rounded-e-xs px-4 py-1 text-sm font-[400] bg-transparent text-gray-700 border border-gray-700 hover:bg-blue-50 transition">
                     <span class="ant-btn-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--mynaui" font-size="20" width="1em" height="1em" viewBox="0 0 24 24">
@@ -51,6 +53,13 @@
                             class="font-medium px-4 py-2 relative before:absolute before:w-[1px] before:h-[60%] before:bg-gray-200 before:left-0 before:top-1/2 before:-translate-y-1/2 first:before:hidden"
                             style="color: rgb(76, 110, 171);"
                         >
+                            Image
+                        </th>
+                        <th
+                            align="left"
+                            class="font-medium px-4 py-2 relative before:absolute before:w-[1px] before:h-[60%] before:bg-gray-200 before:left-0 before:top-1/2 before:-translate-y-1/2 first:before:hidden"
+                            style="color: rgb(76, 110, 171);"
+                        >
                             Status
                         </th>
                         <th
@@ -67,29 +76,65 @@
                         <td>{{ item.id }}</td>
                         <td>{{ item.name }}</td>
                         <td>
+                            <img :src="'/'+item.photo" alt="" class="w-[40px] h-[40px] rounded-full">
+                        </td>
+                        <td>
                             <span v-if="item.status" class="tag tag-success uppercase">
                                 active
                             </span>
                         </td>
                         <td>
                             <div class="flex justify-center" style="gap: 4px;">
-                                <button type="button" class="cursor-pointer inline-flex items-center justify-center bg-transparent text-gray-700 border border-gray-300 text-sm p-2 w-8 h-8 rounded-e-xs hover:bg-gray-100">
-                                    <span class="ant-btn-icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--ic" font-size="16" width="1em" height="1em" viewBox="0 0 24 24">
-                                            <path
-                                                fill="currentColor"
-                                                d="m14.06 9.02l.92.92L5.92 19H5v-.92zM17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83l3.75 3.75l1.83-1.83a.996.996 0 0 0 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29m-3.6 3.19L3 17.25V21h3.75L17.81 9.94z"
-                                            ></path>
-                                        </svg>
-                                    </span>
-                                </button>
-                                <button type="button" class="cursor-pointer inline-flex items-center justify-center bg-transparent text-gray-700 border border-gray-300 text-sm p-2 w-8 h-8 rounded-e-xs hover:bg-gray-100">
-                                    <span class="ant-btn-icon">
-                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--mdi" font-size="16" width="1em" height="1em" viewBox="0 0 24 24">
-                                            <path fill="currentColor" d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6z"></path>
-                                        </svg>
-                                    </span>
-                                </button>
+                                <div class="table_actions">
+                                    <a href="#" class="btn btn-sm btn-outline-secondary">
+                                        <i class="fa fa-gear"></i>
+                                    </a>
+                                    <ul style="--action_elements: 5px;">
+                                        <li>
+                                            <a href="">
+                                                <i class="fa text-info fa-eye"></i>
+                                                Quick View
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <span>
+                                                <a href="#/user/details/370" class="">
+                                                    <i class="fa text-secondary fa-eye"></i>
+                                                    Details
+                                                </a>
+                                                <!---->
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span>
+                                                <a href="#/user/edit/370" class="">
+                                                    <i class="fa text-warning fa-pencil"></i>
+                                                    Edit
+                                                </a>
+                                                <!---->
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span>
+                                                <!---->
+                                                <a href="#" class="">
+                                                    <i class="fa text-danger fa-trash"></i>
+                                                    Deactive
+                                                </a>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span>
+                                                <!---->
+                                                <a href="#" class="">
+                                                    <i class="fa text-danger fa-trash"></i>
+                                                    Delete
+                                                </a>
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
+
                             </div>
                         </td>
                     </tr>
@@ -131,7 +176,7 @@
                         </p>
                     </div>
                     <div>
-                        <nav v-if="store.all?.links" class="isolate inline-flex -space-x-px rounded-md shadow-xs" aria-label="Pagination">
+                        <nav v-if="store.all?.links" class="isolate flex -space-x-px rounded-md shadow-xs" aria-label="Pagination">
                             <a :href="store.all?.links[0].url"
                                 @click.prevent="store[`fetch_${this.config.store_prefix}s`]({url: store.all?.links[0].url})"
                                 class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus:z-20 focus:outline-offset-0">

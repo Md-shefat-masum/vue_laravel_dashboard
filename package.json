@@ -16,11 +16,19 @@
         "tailwindcss": "^4.1.5"
     },
     "dependencies": {
+        "@pqina/filepond-plugin-image-editor": "^9.2.1",
+        "@pqina/pintura": "^8.92.14",
+        "@pqina/vue-pintura": "^9.0.2",
         "@vitejs/plugin-vue": "^5.2.3",
         "debounce": "^2.2.0",
+        "filepond": "^4.32.7",
+        "filepond-plugin-file-poster": "^2.5.2",
+        "filepond-plugin-file-validate-type": "^1.2.9",
+        "filepond-plugin-image-preview": "^4.6.12",
         "pinia": "^3.0.2",
         "vite": "^6.3.4",
         "vue": "^3.5.13",
+        "vue-filepond": "^7.0.4",
         "vue-router": "^4.5.1"
     }
 }

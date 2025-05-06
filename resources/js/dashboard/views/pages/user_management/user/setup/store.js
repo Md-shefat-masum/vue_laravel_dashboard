@@ -11,6 +11,7 @@ let store_module = new StoreModule(
 export default defineStore(`${config.store_prefix}_store`, {
     state: () => ({
         ...store_module.state(),
+        select_fields: config.select_fields,
     }),
     actions: {
         ...store_module.actions(),

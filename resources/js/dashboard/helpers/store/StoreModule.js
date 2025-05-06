@@ -1,5 +1,6 @@
 import axios from "axios";
 import initialStates from "./initialStates";
+import router from '../../router/router'
 import { defineStore } from "pinia";
 import debounce from "debounce";
 
@@ -67,6 +68,11 @@ class StoreModule {
                 url.searchParams.set('orderByAsc', this.orderByAsc);
                 url.searchParams.set('search', this.search_key);
 
+                for (let index = 0; index < this.select_fields.length; index++) {
+                    const element = this.select_fields[index];
+                    url.searchParams.append('fields[]', element);
+                }
+
                 await axios.get(url.href)
                     .then(res=>{
                         this.all = res.data.data;
@@ -87,6 +93,18 @@ class StoreModule {
                 this.page = 1;
                 this[`fetch_${this.store_prefix}s`]();
             },
+            [`store_${this.store_prefix}`]: async function(form_el, payloads = {}){
+                let formData = new FormData(form_el);
+                for (const key in payloads) {
+                    formData.append(key, payloads[key]);
+                }
+                await axios.post(`${this.api_prefix}/store`, formData)
+                    .then(res=>{
+                        window.s_alert("Data stored successfully.");
+                        form_el.reset();
+                        router.replace({ name: `All${this.route_prefix}` });
+                    });
+            }
         }
     }
 }

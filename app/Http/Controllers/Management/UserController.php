@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Management;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -19,7 +20,7 @@ class UserController extends Controller
     public function index()
     {
         $validator = Validator::make(request()->all(), [
-            'fields' => ['string'],
+            'fields' => ['array'],
             'relations' => ['array'],
             'conditions' => ['array'],
         ]);
@@ -28,8 +29,8 @@ class UserController extends Controller
             return entityResponse($validator->errors(), 422, 'error', 'Validation Error');
         }
 
-        $fields = request()->fields ?? "id, status, name, email";
-        $fields = array_map('trim', explode(',', $fields));
+        $fields = request()->fields ?? ['id', 'name', 'email', 'photo', 'phone_number', 'slug', 'created_at', 'status'];
+        // $fields = array_map('trim', explode(',', $fields));
 
         $relations = request()->relations ?? [];
         $conditions = request()->conditions ?? [];
@@ -66,5 +67,27 @@ class UserController extends Controller
             ->appends(request()->all());
 
         return entityResponse($data);
+    }
+
+    public function store()
+    {
+        $validator = Validator::make(request()->all(), [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed', 'string', 'min:8'],
+        ]);
+
+        if ($validator->fails()) {
+            return entityResponse($validator->errors(), 422, 'error', 'Validation Error');
+        }
+
+        $data = $this->model::create([
+            'name' => request()->name,
+            'email' => request()->email,
+            'photo' => request()->photo,
+            'password' => Hash::make(request()->password),
+        ]);
+
+        return $data;
     }
 }

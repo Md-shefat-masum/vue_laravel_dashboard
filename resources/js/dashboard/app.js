@@ -49,9 +49,33 @@ const app = createApp({});
 import RootLayout from './views/layouts/RootLayout.vue';
 import AppBody from './views/components/layouts/AppBody.vue';
 
+import Card from './views/components/card/Card.vue';
+import CardHeader from './views/components/card/CardHeader.vue';
+import CardBody from './views/components/card/CardBody.vue';
+
+import InputEl from './views/components/form/InputEl.vue';
+import FieldsetEl from './views/components/form/FieldsetEl.vue';
+import ButtonInfo from './views/components/form/ButtonInfo.vue';
+import ButtonDanger from './views/components/form/ButtonDanger.vue';
+import ButtonBack from './views/components/form/ButtonBack.vue';
+import ImageUpload from './views/components/form/ImageUpload.vue';
+import ButtonLink from './views/components/buttons/ButtonLink.vue';
+
 app.component('dashboard', RootLayout);
 // app.component('dashboard', App);
 app.component('app-body', AppBody);
+
+app.component('card', Card);
+app.component('card-header', CardHeader);
+app.component('card-body', CardBody);
+
+app.component('input-el', InputEl);
+app.component('fieldset-el', FieldsetEl);
+app.component('button-info', ButtonInfo);
+app.component('button-danger', ButtonDanger);
+app.component('button-back', ButtonBack);
+app.component('button-link', ButtonLink);
+app.component('image-upload', ImageUpload);
 
 app.use(pinia);
 app.use(router);
