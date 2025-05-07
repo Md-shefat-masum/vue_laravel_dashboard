@@ -54,11 +54,11 @@ class StoreModule {
 
     actions = function () {
         return {
-            [`fetch_${this.store_prefix}s`]: async function (payload = {}) {
+            fetch_all: async function (payload = {}) {
                 let url = new URL(`${this.api_prefix}`);
-                if(payload.url){
+                if (payload.url) {
                     url = new URL(payload.url);
-                }else{
+                } else {
                     url.searchParams.set('page', this.page);
                 }
 
@@ -74,37 +74,88 @@ class StoreModule {
                 }
 
                 await axios.get(url.href)
-                    .then(res=>{
+                    .then(res => {
                         this.all = res.data.data;
                         this.page = this.all.current_page;
 
                         try {
                             document.querySelector('.table_wrapper')?.scrollTo({ top: 0, behavior: 'smooth' });
-                        } catch (error) {}
+                        } catch (error) { }
                     });
             },
-            [`search_${this.store_prefix}`]: function(search_key){
+            search_item: function (search_key) {
                 this.search_key = search_key;
                 this.page = 1;
-                this[`fetch_${this.store_prefix}s`]();
+                this.fetch_all();
             },
-            [`set_paginate_${this.store_prefix}`]: function(paginate){
+            set_paginate: function (paginate) {
                 this.paginate = paginate;
                 this.page = 1;
-                this[`fetch_${this.store_prefix}s`]();
+                this.fetch_all();
             },
-            [`store_${this.store_prefix}`]: async function(form_el, payloads = {}){
+            store: async function (form_el, payloads = {}) {
                 let formData = new FormData(form_el);
                 for (const key in payloads) {
                     formData.append(key, payloads[key]);
                 }
                 await axios.post(`${this.api_prefix}/store`, formData)
-                    .then(res=>{
+                    .then(res => {
                         window.s_alert("Data stored successfully.");
                         form_el.reset();
                         router.replace({ name: `All${this.route_prefix}` });
                     });
-            }
+            },
+            update: async function (form_el, payloads = {}) {
+                if (!this.item?.id) {
+                    console.error('ID is required.');
+                    return;
+                }
+
+                let formData = new FormData(form_el);
+                for (const key in payloads) {
+                    formData.append(key, payloads[key]);
+                }
+                formData.append('id', this.item.id);
+
+                await axios.post(`${this.api_prefix}/update`, formData)
+                    .then(res => {
+                        window.s_alert("Data updated successfully.");
+                        router.replace({ name: `Details${this.route_prefix}` });
+                    });
+            },
+            fetch_item: async function ({ id }) {
+                await axios.get(`${this.api_prefix}/${id}`)
+                    .then(res => {
+                        this.item = res.data.data;
+                    });
+            },
+            get_data: function (path) {
+                return path.split('.')
+                    .reduce((acc, key) => {
+                        if (acc && acc.hasOwnProperty(key)) {
+                            return acc[key];
+                        }
+                        return '';
+                    }, this.item);
+            },
+            soft_delete: async function ({ id }) {
+                let con = await window.s_confirm('Deactive data');
+                if (!con) return;
+
+                await axios.post(`${this.api_prefix}/soft-delete`, { id })
+                    .then(res => {
+                        this.fetch_all();
+                    });
+            },
+            destroy: async function ({ id }) {
+                let con = await window.s_confirm('Permenently delete');
+                if (!con) return;
+
+                await axios.post(`${this.api_prefix}/destroy`, { id })
+                    .then(res => {
+                        this.fetch_all();
+                    });
+            },
         }
     }
 }

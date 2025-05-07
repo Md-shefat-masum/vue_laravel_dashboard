@@ -27,14 +27,25 @@ Route::group([
 ], function () {
 
     Route::group(['prefix' => 'users'], function () {
-        Route::get('/', 'Management\UserController@index');
-        Route::post('/store', 'Management\UserController@store');
-        Route::post('/update', 'Management\UserController@update');
-        Route::post('/soft-delete', 'Management\UserController@soft_delete');
-        Route::post('/restore', 'Management\UserController@restore');
-        Route::post('/destroy', 'Management\UserController@destroy');
-        Route::post('/import', 'Management\UserController@import');
-        Route::get('/{id}', 'Management\UserController@show');
+        Route::get('/', 'Management\User\User\UserController@index');
+        Route::post('/store', 'Management\User\User\UserController@store');
+        Route::post('/update', 'Management\User\User\UserController@update');
+        Route::post('/soft-delete', 'Management\User\User\UserController@soft_delete');
+        Route::post('/restore', 'Management\User\User\UserController@restore');
+        Route::post('/destroy', 'Management\User\User\UserController@destroy');
+        Route::post('/import', 'Management\User\User\UserController@import');
+        Route::get('/{id}', 'Management\User\User\UserController@show');
+    });
+    
+    Route::group(['prefix' => 'user-roles'], function () {
+        Route::get('/', 'Management\User\Role\UserRoleController@index');
+        Route::post('/store', 'Management\User\Role\UserRoleController@store');
+        Route::post('/update', 'Management\User\Role\UserRoleController@update');
+        Route::post('/soft-delete', 'Management\User\User\UserRoleController@soft_delete');
+        Route::post('/restore', 'Management\User\Role\UserRoleController@restore');
+        Route::post('/destroy', 'Management\User\Role\UserRoleController@destroy');
+        Route::post('/import', 'Management\User\Role\UserRoleController@import');
+        Route::get('/{id}', 'Management\User\Role\UserRoleController@show');
     });
 
     Route::group(['prefix' => 'media'], function () {

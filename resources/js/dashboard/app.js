@@ -60,6 +60,12 @@ import ButtonDanger from './views/components/form/ButtonDanger.vue';
 import ButtonBack from './views/components/form/ButtonBack.vue';
 import ImageUpload from './views/components/form/ImageUpload.vue';
 import ButtonLink from './views/components/buttons/ButtonLink.vue';
+import SearchData from './views/components/all_page/SearchData.vue';
+import AllTableBody from './views/components/all_page/AllTableBody.vue';
+import TableEl from './views/components/all_page/TableEl.vue';
+import TableHead from './views/components/all_page/TableHead.vue';
+import TableAction from './views/components/all_page/TableAction.vue';
+import Pagination from './views/components/all_page/Pagination.vue';
 
 app.component('dashboard', RootLayout);
 // app.component('dashboard', App);
@@ -76,6 +82,12 @@ app.component('button-danger', ButtonDanger);
 app.component('button-back', ButtonBack);
 app.component('button-link', ButtonLink);
 app.component('image-upload', ImageUpload);
+app.component('search-data', SearchData);
+app.component('all-table-body', AllTableBody);
+app.component('table-el', TableEl);
+app.component('table-head', TableHead);
+app.component('table-action', TableAction);
+app.component('pagination', Pagination);
 
 app.use(pinia);
 app.use(router);

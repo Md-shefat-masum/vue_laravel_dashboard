@@ -4,8 +4,6 @@ import Form from "../Form.vue";
 import Details from "../Details.vue";
 import Layout from "../Layout.vue";
 
-import user_role_routes from "../../user_role/setup/routes";
-
 let route_prefix = setup.route_prefix;
 let route_path = setup.route_path;
 
@@ -34,7 +32,6 @@ const routes =
             name: "Details" + route_prefix,
             component: Details,
         },
-        user_role_routes,
     ]
 };
 

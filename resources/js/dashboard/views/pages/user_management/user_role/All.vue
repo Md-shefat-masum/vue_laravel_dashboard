@@ -20,19 +20,19 @@
             <table-el>
                 <table-head :cells="[
                     {key: 'ID', align: 'left'},
-                    {key: 'Name', align: 'center'},
-                    {key: 'Image', align: 'center'},
+                    {key: 'Title', align: 'center'},
                     {key: 'Status', align: 'center'},
                     {key: 'Actions', align: 'center'}
                 ]"/>
                 <tbody>
                     <tr v-for="item in store.all?.data">
-                        <td>{{ item.id }}</td>
-                        <td>{{ item.name }}</td>
                         <td>
-                            <img :src="'/'+item.photo" alt="" class="w-[40px] h-[40px] object-center rounded-full">
+                            {{ item.id }}
                         </td>
-                        <td>
+                        <td class="text-center">
+                            {{ item.title }}
+                        </td>
+                        <td class="text-center">
                             <span v-if="item.status" class="tag tag-success uppercase">
                                 active
                             </span>

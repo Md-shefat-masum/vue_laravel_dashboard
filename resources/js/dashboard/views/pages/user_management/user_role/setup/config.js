@@ -1,18 +1,18 @@
-const prefix = 'User';
+const prefix = 'User Role';
 const config = {
     prefix,
-    module_name: 'user_management',
+    module_name: 'user_role_management',
 
-    route_prefix: 'user',
-    route_path: 'user',
-    store_prefix: 'user',
+    route_prefix: 'user_role',
+    route_path: 'user-role',
+    store_prefix: 'user_role',
 
-    select_fields: ['id', 'name', 'email', 'photo', 'phone_number', 'slug', 'created_at', 'status'],
-    sort_by_cols: ['id', 'name', 'email', 'phone_number', 'created_at', 'status'],
+    select_fields: ['id', 'title', 'status', 'slug', 'created_at'],
+    sort_by_cols: ['id', 'title', 'status', 'created_at'],
 
     api_host: location.origin,
     api_version: 'v1',
-    api_endpoint: 'users',
+    api_endpoint: 'user-roles',
     api_url: "",
 
     layout_title: prefix + ' Management',

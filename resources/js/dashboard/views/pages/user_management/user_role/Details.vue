@@ -19,15 +19,6 @@
             </card-header>
             <card-body>
                 <table class="table">
-                    <tr>
-                        <td colspan="3">
-                            <img
-                                :src="'/'+store.get_data('photo')"
-                                alt=""
-                                class="w-[40px] h-[40px] object-center rounded-full"
-                            />
-                        </td>
-                    </tr>
                     <tr v-for="field in show_fields">
                         <th class="w-[120px] text-start py-2 !text-[14px]">
                             {{ field.label }}
@@ -55,16 +46,8 @@ export default {
         store: store(),
         show_fields: [
             {
-                label: "Name",
-                key: "name",
-            },
-            {
-                label: "Email",
-                key: "email",
-            },
-            {
-                label: "Phone Number",
-                key: "phone_number",
+                label: "Title",
+                key: "title",
             },
         ]
     }),

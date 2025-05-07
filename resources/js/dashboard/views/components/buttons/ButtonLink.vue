@@ -3,7 +3,8 @@
         v-bind="$attrs"
         :to="{name: route_name, params: params}"
         :class="[
-            'py-1 px-4 text-white/90 text-[14px] hover:bg-[var(--brand_deep)] hover:text-white bg-[var(--brand)]'
+            '!flex gap-2 items-center',
+            'py-1 px-4 text-white text-[14px] hover:bg-[var(--brand_deep)] hover:text-white bg-[var(--brand)]'
             , $attrs.class
         ]"
     >

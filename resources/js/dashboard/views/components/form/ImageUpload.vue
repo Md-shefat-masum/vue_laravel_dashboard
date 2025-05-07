@@ -4,15 +4,9 @@
             {{ label }}
         </label>
         <div class="mt-1">
-            <file-pond :name="`file`" ref="pond"
-                :allowMultiple="allowMultiple"
-                :server="serverConfig" maxFiles="5"
-                checkValidity="true"
-                @updatefiles="handleFileUpdate"
-                @processfiles="handleProcessFiles"
-                @removefile="handleFileRemove"
-                :acceptedFileTypes="['image/*']"
-            />
+            <file-pond :name="`file`" ref="pond" :allowMultiple="allowMultiple"
+                :server="serverConfig" maxFiles="5" checkValidity="true" @updatefiles="handleFileUpdate"
+                @processfiles="handleProcessFiles" @removefile="handleFileRemove" :acceptedFileTypes="['image/*']" />
 
             <input type="hidden" :name="name" :value="file_urls">
         </div>
@@ -58,6 +52,10 @@ export default {
             type: String,
             default: '200',
         },
+        default_files: {
+            type: Array,
+            default: [],
+        }
     },
     name: 'ImageUploader',
     components: {
@@ -72,18 +70,18 @@ export default {
         };
     },
     methods: {
-        set_file_urls: function(){
-            if(this.allowMultiple){
+        set_file_urls: function () {
+            if (this.allowMultiple) {
                 this.file_urls = this.files.map(file => file.serverId);
-            }else{
+            } else {
                 this.file_urls = this.files[0].serverId;
             }
         },
-        handleFileRemove: function(){
+        handleFileRemove: function () {
             this.callback(this.files);
             this.set_file_urls();
         },
-        handleProcessFiles: function(){
+        handleProcessFiles: function () {
             this.callback(this.files);
             this.set_file_urls();
         },
@@ -93,7 +91,12 @@ export default {
         createAxiosUploadProcessor() {
             return (fieldName, file, metadata, load, error, progress, abort) => {
 
-                if(file.size > 1000000){
+                // const is_default_image = this.default_files.find(i=>i.includes('/'+file.name));
+                // if (is_default_image) {
+                //     return load(is_default_image);
+                // }
+
+                if (file.size > 1000000) {
                     error('File size is too big. Should be less than 1MB.');
                     window.s_alert('upload less than 1MB.', 'error');
                     return abort();

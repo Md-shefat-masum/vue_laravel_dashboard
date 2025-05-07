@@ -10,8 +10,8 @@
                 </div>
             </card-header>
             <card-body>
-                <form @submit.prevent="store[`store_${config.store_prefix}`]($event.target, {})">
-                    <fieldset-el title="User Information">
+                <form @submit.prevent="store[`${param_id ? 'update' : 'store'}`]($event.target, {})">
+                    <fieldset-el :title="`${config.prefix} Information`">
                         <div class="grid grid-cols-3 gap-3">
                             <input-el
                                 type="text"
@@ -19,6 +19,7 @@
                                 label="Name"
                                 placeholder="Name"
                                 :required="true"
+                                :value="store.item?.name ?? ''"
                             />
 
                             <input-el
@@ -27,6 +28,7 @@
                                 label="Email"
                                 placeholder="Email"
                                 :required="true"
+                                :value="store.item?.email ?? ''"
                             />
 
                             <input-el
@@ -34,7 +36,7 @@
                                 name="password"
                                 label="Password"
                                 placeholder="Password"
-                                :required="true"
+                                :required="param_id ? false : true"
                             />
 
                             <input-el
@@ -42,7 +44,7 @@
                                 name="password_confirmation"
                                 label="Re Password"
                                 placeholder="Re type password"
-                                :required="true"
+                                :required="param_id ? false : true"
                             />
 
                             <div>
@@ -52,7 +54,10 @@
                                     :allowMultiple="false"
                                     height="100"
                                     width="100"
-                                    :callback="(files)=>''" />
+                                    :callback="(files)=>''"
+                                    :default_files="[`/${store.item?.photo}`]"
+                                />
+                                <img v-if="store.item?.photo" :src="`/${store.item?.photo}`" class="w-[100px] h-[100px] object-center rounded-xs" />
                             </div>
 
                         </div>
@@ -71,20 +76,24 @@
 import config from './setup/config';
 import store from './setup/store';
 export default {
-    data: ()=>({
+    data: () => ({
         config,
         pram_id: null,
-        photo: "",
         store: store(),
     }),
-    created: function () {
+    created: async function () {
         this.param_id = this.$route.params.id;
-    },
-    methods: {
-        get_user_image: function(files = []){
-            this.photo = files.map(item => item.serverId)[0];
+
+        if (this.param_id) {
+            await this.store.fetch_item({
+                id: this.param_id
+            });
         }
-    }
+    },
+    methods: {},
+    beforeUnmount: function(){
+        this.store.item = {};
+    },
 }
 </script>
 <style lang="">

@@ -1,38 +1,22 @@
 <template lang="">
     <app-body>
         <div class="content_nav">
-            <div class="content_nav_group">
-                <label :for="`menu_${1}`" class="content_nav_heading">
+            <div v-for="(menu, index) in menus" :key="index" class="content_nav_group">
+                <label :for="`menu_${index}`" class="content_nav_heading">
                     <div class="text">
-                        User Management
+                        {{ menu.title }}
                     </div>
                     <div class="has_more">
                         <i class="fa fa-angle-down"></i>
                     </div>
                 </label>
                 <ul class="content_nav_menu">
-                    <input :id="`menu_${1}`" :checked="true" type="checkbox" class="content_nav_toggle" />
-                    <li>
-                        <router-link :to="{name: 'Alluser'}">
+                    <input :id="`menu_${index}`" :checked="has_active_menu(menu.submenus) ? true : false" type="checkbox" class="content_nav_toggle" />
+                    <li v-for="(submenu, sindex) in menu.submenus" :key="sindex">
+                        <router-link :to="{name: submenu.route_name}">
                             <i class=""></i>
                             <span class="title">
-                                All User
-                            </span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link :to="{name: 'Createuser'}">
-                            <i class=""></i>
-                            <span class="title">
-                                Create User
-                            </span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link :to="{name: 'Edituser', params: {id: 1}}">
-                            <i class=""></i>
-                            <span class="title">
-                                Edit User
+                                {{ submenu.title }}
                             </span>
                         </router-link>
                     </li>
@@ -45,8 +29,59 @@
     </app-body>
 </template>
 <script>
-export default {
+import config from './setup/config';
 
+const menus = [
+    {
+        title: 'User Management',
+        submenus: [
+            {
+                title: 'All User',
+                route_name: `Alluser`,
+                icon: '',
+                count: 0
+            },
+            {
+                title: 'Create User',
+                route_name: `Createuser`,
+                icon: '',
+                count: 0
+            },
+        ]
+    },
+    {
+        title: 'Role Management',
+        submenus: [
+            {
+                title: 'All Role',
+                route_name: `Alluser_role`,
+                icon: '',
+                count: 0
+            },
+            {
+                title: 'Create Role',
+                route_name: `Createuser_role`,
+                icon: '',
+                count: 0
+            },
+        ]
+    },
+];
+
+export default {
+    data: () => ({
+        config,
+        menus,
+    }),
+    created: function(){
+        console.log(this.$route.name);
+        
+    },
+    methods: {
+        has_active_menu: function (menus) {
+            return menus.find(menu => this.$route.name == menu.route_name);
+        }
+    }
 }
 </script>
 <style lang="">

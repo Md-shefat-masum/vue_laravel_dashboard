@@ -177,6 +177,11 @@ export default {
     created: function(){
         this.input_type = this.type;
         this.default_value = this.value;
+
+        this.$watch('value', function(){
+            this.default_value = this.value
+        });
+
     },
     mounted: function(){
         this.data_attr?.map(i=>{
