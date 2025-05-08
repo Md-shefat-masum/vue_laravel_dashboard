@@ -18,6 +18,15 @@
                     </span>
                 </router-link>
             </li>
+            
+            <li>
+                <router-link to="/page-builder">
+                    <i class="fa fa-globe"></i>
+                    <span class="menu_label">
+                        page builder
+                    </span>
+                </router-link>
+            </li>
         </ul>
 
         <ul class="main_menu_bottom">

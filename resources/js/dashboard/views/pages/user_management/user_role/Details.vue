@@ -19,17 +19,19 @@
             </card-header>
             <card-body>
                 <table class="table">
-                    <tr v-for="field in show_fields">
-                        <th class="w-[120px] text-start py-2 !text-[14px]">
-                            {{ field.label }}
-                        </th>
-                        <th class="w-[5px]">
-                            :
-                        </th>
-                        <td class="px-2 !text-[16px]">
-                            {{ store.get_data(field.key) }}
-                        </td>
-                    </tr>
+                    <tbody>
+                        <tr v-for="field in show_fields">
+                            <th class="w-[120px] text-start py-2 !text-[14px]">
+                                {{ field.label }}
+                            </th>
+                            <th class="w-[5px]">
+                                :
+                            </th>
+                            <td class="px-2 !text-[16px]">
+                                {{ store.get_data(field.key) }}
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
             </card-body>
         </card>

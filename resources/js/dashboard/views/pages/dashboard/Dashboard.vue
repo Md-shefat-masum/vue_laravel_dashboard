@@ -17,7 +17,6 @@
                 </div>
 
             </div>
-
         </div>
     </app-body>
 </template>
@@ -40,7 +39,7 @@ export default {
             },
             {
                 label: "Average Time On Site",
-                value: Intl.NumberFormat().format(10)+' mins',
+                value: Intl.NumberFormat().format(10) + ' mins',
             },
             {
                 label: "Subscriber Count",
@@ -48,8 +47,7 @@ export default {
             },
         ]
     }),
-    created: function () {
-
+    mounted: function () {
     }
 }
 </script>

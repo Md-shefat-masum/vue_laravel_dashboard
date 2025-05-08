@@ -48,10 +48,21 @@
 
     <title>Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+
+    <script src="/contents/dashboard/assets/js/jquery.js"></script>
+    <script src="/contents/dashboard/assets/js/jqueryui.js"></script>
+    
+    <script src="/contents/dashboard/assets/js/ckeditor/ckeditor.js"></script>
+    <script src="/contents/dashboard/assets/js/ckeditor/styles.js"></script>
+    <script src="/contents/dashboard/assets/js/ckeditor/adapters/jquery.js"></script>
+    <script src="/contents/dashboard/assets/js/grideditor.js"></script>
+    <link rel="stylesheet" href="/contents/dashboard/assets/styles/pagebuilder.css">
+
     <link rel="stylesheet" href="/contents/dashboard/assets/styles/app.css">
     <script src="/contents/dashboard/assets/js/sweat_alert.js"></script>
 
     @vite(['resources/css/app.css', 'resources/js/dashboard/app.js'])
+
 </head>
 
 <body>

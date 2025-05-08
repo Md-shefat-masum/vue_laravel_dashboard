@@ -94,6 +94,9 @@ footer {
 }
 #dashboard_app .main {
   display: flex;
+  width: 100svw;
+  height: calc(100vh - 31.9px);
+  flex-wrap: wrap;
 }
 #dashboard_app .main .left_nav {
   background-color: var(--brand_deep);
@@ -623,6 +626,19 @@ table tr:nth-child(n+6) .table_actions ul:hover {
   padding: 2px;
   color: #ff4d4f;
   font-weight: 500;
+}
+
+.row {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-top: calc(var(--bs-gutter-y) * -1);
+  margin-right: calc(var(--bs-gutter-x) / -2);
+  margin-left: calc(var(--bs-gutter-x) / -2);
 }
 
 /*# sourceMappingURL=app.css.map */

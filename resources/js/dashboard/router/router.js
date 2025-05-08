@@ -8,6 +8,7 @@ import AuthLayout from '@dashboard/views/layouts/AuthLayout.vue';
 import Login from '@dashboard/views/pages/auth/Login.vue';
 
 import dashboard from '@dashboard/views/pages/dashboard/Dashboard.vue';
+import PageBuilder from '@dashboard/views/pages/page_builder/PageBuilder.vue';
 
 import user_route from '@dashboard/views/pages/user_management/user/setup/routes.js';
 import profile_route from '@dashboard/views/pages/profile/setup/routes.js';
@@ -27,6 +28,11 @@ const routes = [
                         path: '',
                         component: dashboard,
                         name: 'Dashboard',
+                    },
+                    {
+                        path: 'page-builder',
+                        component: PageBuilder,
+                        name: 'PageBuilder',
                     },
 
                     user_route,
