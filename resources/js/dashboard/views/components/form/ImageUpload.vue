@@ -69,6 +69,9 @@ export default {
             acceptedTypes: 'image/*',
         };
     },
+    created: function () {
+        this.file_urls = this.default_files;
+    },
     methods: {
         set_file_urls: function () {
             if (this.allowMultiple) {

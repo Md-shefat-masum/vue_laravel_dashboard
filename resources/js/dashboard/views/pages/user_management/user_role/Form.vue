@@ -25,7 +25,7 @@
 
                         <div class="mt-4 flex justify-end gap-3 text-end">
                             <button-info />
-                            <button-danger />
+                            <!-- <button-danger /> -->
                         </div>
                     </fieldset-el>
                 </form>
@@ -44,7 +44,7 @@ export default {
     }),
     created: async function () {
         console.log(this.store);
-        
+
         this.param_id = this.$route.params.id;
 
         if (this.param_id) {

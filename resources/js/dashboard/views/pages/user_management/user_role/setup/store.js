@@ -1,4 +1,4 @@
-import StoreModule from "../../../../../helpers/store/StoreModule";
+import StoreModule from "@dashboard/helpers/store/StoreModule";
 import { defineStore } from "pinia";
 import config from './config';
 

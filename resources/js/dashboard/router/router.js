@@ -8,9 +8,11 @@ import AuthLayout from '@dashboard/views/layouts/AuthLayout.vue';
 import Login from '@dashboard/views/pages/auth/Login.vue';
 
 import dashboard from '@dashboard/views/pages/dashboard/Dashboard.vue';
-import settings from '@dashboard/views/pages/app_management/Settings.vue';
 
 import user_route from '@dashboard/views/pages/user_management/user/setup/routes.js';
+import profile_route from '@dashboard/views/pages/profile/setup/routes.js';
+
+import settings_route from '@dashboard/views/pages/app_management/setup/routes.js';
 
 const routes = [
     {
@@ -26,11 +28,10 @@ const routes = [
                         component: dashboard,
                         name: 'Dashboard',
                     },
-                    {
-                        path: 'settings',
-                        component: settings,
-                    },
+
                     user_route,
+                    profile_route,
+                    settings_route,
                 ],
             },
             {

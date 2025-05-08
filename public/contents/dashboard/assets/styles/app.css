@@ -125,6 +125,7 @@ footer {
   padding: 10px;
   border: 1px solid var(--white_border);
   width: calc(100% - 190px);
+  overflow-y: auto;
 }
 #dashboard_app .main .app_content_body .app_content.transparent {
   background-color: unset;

@@ -43,6 +43,7 @@
                 padding: 10px;
                 border: 1px solid var(--white_border);
                 width: calc(100% - 190px);
+                overflow-y: auto;
 
                 &.transparent{
                     background-color: unset;

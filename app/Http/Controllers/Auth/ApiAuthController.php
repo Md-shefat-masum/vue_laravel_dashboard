@@ -52,7 +52,7 @@ class ApiAuthController extends Controller
     public function me()
     {
         try {
-            $fields = ['id', 'name', 'email', 'status'];
+            $fields = ['id', 'name', 'email', 'photo', 'phone_number', 'slug', 'created_at', 'status'];
             $relations = [];
             $condition = ['id' => $this->guard()->id()];
 

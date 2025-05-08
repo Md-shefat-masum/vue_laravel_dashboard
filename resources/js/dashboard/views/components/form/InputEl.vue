@@ -15,29 +15,52 @@
 
         </label>
         <div class="mt-1">
-            <input
-                :type="input_type"
-                :accept="is_preview && accept"
-                :id="uninque_id_for_label()"
-                :name="name"
-                :required="required"
-                :class="`${extra_class} ${!input_not_text?'form-control':'form-check-input'}`"
-                :multiple="multiple"
-                :value="type != 'file' ? default_value : null"
-                :checked="checked"
-                @change="input_change_handler"
-                ref="input_el"
-                :placeholder="placeholder"
+            <div v-if="input_type == 'textarea'">
+                <textarea
+                    :id="uninque_id_for_label()"
+                    :name="name"
+                    :required="required"
+                    :class="`${extra_class}`"
+                    :value="default_value"
+                    @change="input_change_handler"
+                    :placeholder="placeholder"
+                    class="
+                        w-full
+                        text-sm
+                        font-weight-300
+                        px-[11px] py-[4px] border border-gray-300
+                        rounded-e-xs focus:outline-none focus:ring-1
+                        focus:ring-gray-500 focus:border-gray-200 shadow-xs
+                        placeholder-gray-400"
+                ></textarea>
+            </div>
 
-                class="
-                    w-full
-                    text-sm
-                    font-weight-300
-                    px-[11px] py-[4px] border border-gray-300
-                    rounded-e-xs focus:outline-none focus:ring-1
-                    focus:ring-gray-500 focus:border-gray-200 shadow-xs
-                    placeholder-gray-400"
-                />
+            <div v-else>
+                <input
+                    :type="input_type"
+                    :accept="is_preview && accept"
+                    :id="uninque_id_for_label()"
+                    :name="name"
+                    :required="required"
+                    :class="`${extra_class} ${!input_not_text?'form-control':'form-check-input'}`"
+                    :multiple="multiple"
+                    :value="type != 'file' ? default_value : null"
+                    :checked="checked"
+                    @change="input_change_handler"
+                    ref="input_el"
+                    :placeholder="placeholder"
+
+                    class="
+                        w-full
+                        text-sm
+                        font-weight-300
+                        px-[11px] py-[4px] border border-gray-300
+                        rounded-e-xs focus:outline-none focus:ring-1
+                        focus:ring-gray-500 focus:border-gray-200 shadow-xs
+                        placeholder-gray-400"
+                    />
+            </div>
+
         </div>
         <div>
             <div class="file_preview" ref="preview_el" v-if="is_preview">
@@ -181,7 +204,6 @@ export default {
         this.$watch('value', function(){
             this.default_value = this.value
         });
-
     },
     mounted: function(){
         this.data_attr?.map(i=>{

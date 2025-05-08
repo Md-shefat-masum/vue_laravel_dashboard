@@ -33,6 +33,15 @@ export default defineStore('auth_store', {
 
                     return router.push({ name: 'Dashboard' });
                 });
-        }
+        },
+        get_data: function (path) {
+            return path.split('.')
+                .reduce((acc, key) => {
+                    if (acc && acc.hasOwnProperty(key)) {
+                        return acc[key];
+                    }
+                    return '';
+                }, this.auth_user);
+        },
     }
 })

@@ -36,7 +36,7 @@ Route::group([
         Route::post('/import', 'Management\User\User\UserController@import');
         Route::get('/{id}', 'Management\User\User\UserController@show');
     });
-    
+
     Route::group(['prefix' => 'user-roles'], function () {
         Route::get('/', 'Management\User\Role\UserRoleController@index');
         Route::post('/store', 'Management\User\Role\UserRoleController@store');
@@ -46,6 +46,17 @@ Route::group([
         Route::post('/destroy', 'Management\User\Role\UserRoleController@destroy');
         Route::post('/import', 'Management\User\Role\UserRoleController@import');
         Route::get('/{id}', 'Management\User\Role\UserRoleController@show');
+    });
+
+    Route::group(['prefix' => 'profile'], function () {
+        Route::post('/update-info', 'Management\User\Profile\ProfileController@update_info');
+        Route::post('/update-password', 'Management\User\Profile\ProfileController@update_password');
+    });
+
+    Route::group(['prefix' => 'settings'], function () {
+        Route::get('/fields', 'Management\SettingController@fields');
+        Route::get('/{group_id}/{sub_group_id}/values', 'Management\SettingController@values');
+        Route::post('/update', 'Management\SettingController@update');
     });
 
     Route::group(['prefix' => 'media'], function () {

@@ -3,14 +3,14 @@
         <card>
             <card-header class="flex items-center justify-between">
                 <h5 class="text-capitalize text-[18px]!">
-                    {{ param_id ? config.edit_page_title : config.create_page_title }}
+                    Update Info
                 </h5>
                 <div>
-                    <button-back :to="`All${config.route_prefix}`" />
+
                 </div>
             </card-header>
             <card-body>
-                <form @submit.prevent="store[`${param_id ? 'update' : 'store'}`]($event.target, {})">
+                <form @submit.prevent="store.update_info($event.target, {id: auth_store.auth_user?.id})">
                     <fieldset-el :title="`${config.prefix} Information`">
                         <div class="grid grid-cols-3 gap-3">
                             <input-el
@@ -19,7 +19,7 @@
                                 label="Name"
                                 placeholder="Name"
                                 :required="true"
-                                :value="store.item?.name ?? ''"
+                                :value="auth_store.auth_user?.name ?? ''"
                             />
 
                             <input-el
@@ -28,23 +28,16 @@
                                 label="Email"
                                 placeholder="Email"
                                 :required="true"
-                                :value="store.item?.email ?? ''"
+                                :value="auth_store.auth_user?.email ?? ''"
                             />
 
                             <input-el
-                                type="password"
-                                name="password"
-                                label="Password"
-                                placeholder="Password"
-                                :required="param_id ? false : true"
-                            />
-
-                            <input-el
-                                type="password"
-                                name="password_confirmation"
-                                label="Re Password"
-                                placeholder="Re type password"
-                                :required="param_id ? false : true"
+                                type="phone"
+                                name="phone_number"
+                                label="Phone Number"
+                                placeholder="Phone Number"
+                                :required="true"
+                                :value="auth_store.auth_user?.phone_number ?? ''"
                             />
 
                             <div>
@@ -55,16 +48,15 @@
                                     height="100"
                                     width="100"
                                     :callback="(files)=>''"
-                                    :default_files="[`/${store.item?.photo}`]"
+                                    :default_files="[`/${auth_store.auth_user?.photo}`]"
                                 />
-                                <img v-if="store.item?.photo" :src="`/${store.item?.photo}`" class="w-[100px] h-[100px] object-center rounded-xs" />
+                                <img v-if="auth_store.auth_user?.photo" :src="`/${store.auth_user?.photo}`" class="w-[100px] h-[100px] object-center rounded-xs" />
                             </div>
 
                         </div>
 
                         <div class="mt-4 flex justify-end gap-3 text-end">
                             <button-info />
-                            <!-- <button-danger /> -->
                         </div>
                     </fieldset-el>
                 </form>
@@ -75,24 +67,20 @@
 <script>
 import config from './setup/config';
 import store from './setup/store';
+import auth_store from '@dashboard/stores/auth_store';
 export default {
     data: () => ({
         config,
         pram_id: null,
         store: store(),
+        auth_store: auth_store(),
     }),
     created: async function () {
-        this.param_id = this.$route.params.id;
 
-        if (this.param_id) {
-            await this.store.fetch_item({
-                id: this.param_id
-            });
-        }
     },
     methods: {},
     beforeUnmount: function(){
-        this.store.item = {};
+
     },
 }
 </script>

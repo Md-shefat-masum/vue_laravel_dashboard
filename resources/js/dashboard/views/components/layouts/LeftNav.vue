@@ -9,7 +9,7 @@
                     </span>
                 </router-link>
             </li>
-            
+
             <li>
                 <router-link to="/user">
                     <i class="fa fa-users"></i>
@@ -30,9 +30,12 @@
                 </router-link>
             </li>
             <li>
-                <a href="#">
+                <router-link to="/profile">
                     <i class="far fa-user-circle"></i>
-                </a>
+                    <span class="menu_label">
+                        Profile
+                    </span>
+                </router-link>
             </li>
             <li>
                 <a href="#" @click.prevent="auth_store.logout();">
